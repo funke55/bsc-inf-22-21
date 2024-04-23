@@ -1,0 +1,249 @@
+QUESTION 1
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+ using namespace std;
+int main()
+{
+srand(time(0));
+int DaysUntilExpiration = rand() % 12 ; 
+if (DaysUntilExpiration <= 0){
+    cout<< "Your subscription has Expired."<< endl;
+}else if(DaysUntilExpiration <= 1){ 
+    cout<< "Your subscription Expires within a day"<< endl;
+    cout<< "Renew now and save 20%!"<< endl;
+}else if(DaysUntilExpiration <= 5){ 
+    cout<< "Your subscription expires in value of DaysUntilExpirationdays"<< endl;
+     cout<< "Renew now and save 10%!"<< endl;
+}else if(DaysUntilExpiration <= 10){ 
+    cout<< " Your subscription will expire soon. Renew now!"<< endl;
+}else{   
+    cout<< " You have an active subscription."<< endl;
+}
+    return 0;
+}
+ 
+-----------------------------------------------------------------------------------------------------------------
+QEUSTION 2
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+ using namespace std;
+int main()
+{
+srand(time(0));
+int DaysUntilExpiration = rand() % 12 ; 
+ switch(DaysUntilExpiration){
+     case 0:
+    cout<< "Your subscription has Expired."<< endl;
+    break;
+    case 1:
+    cout<< "Your subscription Expires within a day"<< endl;
+    cout<< "Renew now and save 20%!"<< endl;
+    break;
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    cout<< "Your subscription expires in value of DaysUntilExpirationdays"<< endl;
+     cout<< "Renew now and save 10%!"<< endl;
+     break;
+     case 6:
+     case 7:
+     case 8:
+     case 9:
+     case 10:
+    cout<< " Your subscription will expire soon. Renew now!"<< endl;
+    break;
+default:  
+    cout<< " You have an active subscription."<< endl;
+    break;
+}
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------
+
+QUESTION 3
+
+#include <iostream>
+#include <string>
+ using namespace std;
+int main()
+{
+
+string element[] = {"B123","C234", "C15", "B177", "G3003", "C235", "B179"};
+
+     for (const string& element : element){
+         if (element[0]=='B') {
+             cout<< element << endl;
+         }
+     }
+     return 0;
+-----------------------------------------------------------------------------------------------------------------
+
+QUESTION 4
+
+#include <iostream>
+ using namespace std;
+int main(){
+    int number;
+    cout << "Please Enter an Integer value between 5 and 10 ";
+    while (true){
+        if (cin>> number){
+            if(number >= 5 && number <= 10){
+                cout<<"your input value ( "<<number<<")  has been accepted."<<endl;
+            
+        }else{
+            cout<<"you entered ("<<number<<"). please enter a number between 5 and 10"<< endl;
+        }
+        }else{
+            cin.clear();
+            cout<<"sorry, you entered an invalid number please try again";
+           
+    }
+    return 0;
+}
+}
+------------------------------------------------------------------------------------------------------------------
+QUESTION 5
+ 
+#include <iostream>
+using namespace std;
+double CalculateTriangleArea(double base, double hieght);
+double CalculateRectangleArea(double base, double hieght);
+double CalculateSquareArea(double base, double hieght);
+
+int main(){
+ int select;
+ while(true){
+     cout<<"please select the area of the shap to calculate:"<<endl;
+     cout<<"1.Triangle"<<endl;
+     cout<<"2.Rectangle"<<endl;
+     cout<<"3.Square"<<endl;
+     cout<<"4.Quit"<<endl;
+     cout<<"enter selection";
+     cin>> select;
+ if (select<1 || select>4){
+    cout<<"Your input was: ("<<select<<") which is an invalid input. please enter a valid input "<<endl; 
+    continue;
+ }     
+ switch(select){
+     case 1:{
+         double base, hieght;
+     cout<<"enter the base"<<endl;
+     cin>>base;
+     cout<<"enter the hieght"<<endl;
+     cin>> hieght;
+     double triangle = 0.5 * base * hieght;
+     cout<<"The area of triangle is :"<<triangle<<endl;
+     break;
+     }
+     case 2:{
+         double length, width;
+     cout<<"enter the length"<<endl;
+     cin>>length;
+     cout<<"enter the width"<<endl;
+     cin>> width;
+     double Rectangle =  length * width;
+     cout<<"The area of Rectangle is :"<<Rectangle<<endl;
+     break;
+     }
+     case 3:{
+         double side;
+     cout<<"enter the side"<<endl;
+     cin>>side;
+     double Square =  side * side;
+     cout<<"The area of Square is :"<<Square<<endl;
+     break;
+     }
+     case 4:{
+     cout<<"Exicting program....."<<endl;
+     return 0;
+     }
+ }return 0;
+}
+}
+--------------------------------------------------------------------------------------------------------------------
+QUASTION 6
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cctype>
+using namespace std;
+int AmountVowels(const string& text){
+    int VowelAmount = 0;
+    string vowels = "aeiouAEIOU";
+for (char c: text){
+    if (vowels.find(c) != string:: npos){
+        VowelAmount++;
+    }
+} 
+return VowelAmount;
+}
+int AmountWords(const string& text){
+    int WordAmount = 0;
+    bool inword = false;
+    for (char c: text){
+        if(isspace(c)){
+            inword = false;
+        }else if(! inword){
+          WordAmount++;
+          inword = true;
+        }
+    }
+    return WordAmount;
+}
+string Reverse(const string& text){
+    string ReverseText = text;
+    int length = text.length();
+    for (int i =0; i < length /2 ; i++){
+        swap(ReverseText[i], ReverseText[length-i-1]);
+        
+    }return ReverseText;
+}
+string CSL (const string& text){
+    string result;
+    bool Capitalised = false;
+    for (char c: text){
+        if (isalpha(c)){
+            if (Capitalised){
+        result += toupper(c);
+        Capitalised = false;
+        
+            }else{
+                result += c;
+                Capitalised = true;
+            }
+        }else{
+            result += c;
+            if (isspace(c) || ispunct(c)){
+                Capitalised = true;
+            }
+        }
+    }return result;
+}
+int main(){
+    string fileData;
+    ifstream infile("funke.txt");
+    if (infile.is_open()){
+        getline (infile, fileData);
+        infile.close();
+    int VowelAmount = AmountVowels(fileData);
+    cout<<" Amount of Vowels :"<<VowelAmount<<endl;
+    
+    int WordAmount = AmountWords(fileData);
+    cout<<" Amount of words :"<<WordAmount<<endl;
+    
+    string ReverseText = Reverse(fileData);
+    cout<<" Reverse text :"<<ReverseText<<endl;
+    
+    string Capitalised = CSL(fileData);
+    cout<<" Capitalised statement :"<<Capitalised<<endl;
+    
+    }else{
+     cout<<" unable to open file"<<endl;  
+    }return 0;
+}
